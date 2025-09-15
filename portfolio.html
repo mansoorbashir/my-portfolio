@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mansoor Bashir | Architect Portfolio</title>
+  <style>
+    /* ==== Global ==== */
+    * {margin:0; padding:0; box-sizing:border-box;}
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background:#111; color:#eee;
+      line-height:1.6; scroll-behavior:smooth;
+    }
+    a {text-decoration:none; color:inherit;}
+    ul {list-style:none;}
+    h2 {
+      font-size:2.3rem; margin-bottom:20px;
+      text-align:center; color:#f4c542;
+    }
+
+    /* ==== Navbar ==== */
+    header {
+      position:fixed; top:0; left:0; width:100%;
+      background:rgba(0,0,0,0.8); backdrop-filter:blur(6px);
+      color:#fff; display:flex; justify-content:space-between;
+      align-items:center; padding:15px 40px; z-index:1000;
+    }
+    header h1 {font-size:1.6rem; font-weight:bold; color:#f4c542;}
+    nav ul {display:flex; gap:25px;}
+    nav ul li a {
+      font-weight:bold; color:#fff; transition:0.3s;
+    }
+    nav ul li a:hover {color:#f4c542;}
+
+    /* ==== Sections ==== */
+    section {min-height:100vh; padding:120px 20px 60px;}
+
+    /* ==== Hero ==== */
+    #home {
+      display:flex; flex-direction:column; justify-content:center; align-items:center;
+      text-align:center; padding-top:120px;
+      background:url('https://images.unsplash.com/photo-1505843490538-00c5d1a1f1b7?auto=format&fit=crop&w=1600&q=80') 
+      no-repeat center/cover;
+      position:relative;
+    }
+    #home::after {
+      content:""; position:absolute; top:0; left:0; right:0; bottom:0;
+      background:rgba(0,0,0,0.65);
+    }
+    #home > * {position:relative; z-index:1;}
+    #home img {
+      width:160px; height:160px; border-radius:50%;
+      border:4px solid #f4c542; margin-bottom:20px; object-fit:cover;
+      animation:fadeZoom 1.5s ease-in-out;
+    }
+    @keyframes fadeZoom {
+      from {opacity:0; transform:scale(0.8);}
+      to {opacity:1; transform:scale(1);}
+    }
+    #home h1 {font-size:3rem; margin-bottom:10px; color:#f4c542;}
+    #home p {font-size:1.2rem; max-width:700px; margin-bottom:20px;}
+    .btn {
+      display:inline-block; padding:12px 25px; border-radius:30px;
+      background:#f4c542; color:#111; font-weight:bold;
+      transition:0.3s; margin-top:10px;
+    }
+    .btn:hover {background:#fff; color:#111;}
+
+    /* ==== About ==== */
+    #about p {
+      max-width:900px; margin:0 auto; text-align:center;
+      font-size:1.15rem; line-height:1.8;
+    }
+
+    /* ==== Experience ==== */
+    .experience {
+      max-width:900px; margin:0 auto; display:flex; flex-direction:column;
+      gap:20px; text-align:left;
+    }
+    .exp-card {
+      background:rgba(255,255,255,0.05); border-radius:12px;
+      padding:25px; box-shadow:0 5px 20px rgba(0,0,0,0.4);
+      border:1px solid rgba(255,255,255,0.1);
+    }
+    .exp-card h3 {color:#f4c542; margin-bottom:8px;}
+    .exp-card span {font-size:0.95rem; color:#aaa; display:block; margin-bottom:12px;}
+
+    /* ==== Skills ==== */
+    .skills {
+      display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+      gap:20px; max-width:1000px; margin:30px auto;
+    }
+    .skill {
+      background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1);
+      border-radius:12px; padding:25px; text-align:center;
+      backdrop-filter:blur(8px); box-shadow:0 5px 20px rgba(0,0,0,0.4);
+      transition:transform 0.3s;
+    }
+    .skill:hover {transform:translateY(-8px);}
+    .skill-title {font-weight:bold; margin-bottom:12px; font-size:1.2rem; color:#f4c542;}
+    .progress {background:#333; height:12px; border-radius:6px; overflow:hidden;}
+    .progress-bar {height:100%; background:#f4c542; width:0; transition:width 1.2s ease;}
+
+    /* ==== Projects ==== */
+    .projects {
+      display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+      gap:25px; max-width:1100px; margin:0 auto;
+    }
+    .project {
+      background:rgba(255,255,255,0.05); border-radius:15px;
+      overflow:hidden; box-shadow:0 5px 20px rgba(0,0,0,0.5);
+      transition:transform 0.3s;
+    }
+    .project:hover {transform:scale(1.05);}
+    .project img {width:100%; height:200px; object-fit:cover;}
+    .project h3 {padding:15px; text-align:center; color:#f4c542;}
+
+    /* ==== Contact ==== */
+    #contact form {
+      max-width:600px; margin:0 auto 25px; display:flex; flex-direction:column; gap:18px;
+      background:rgba(255,255,255,0.05); padding:30px; border-radius:12px;
+      box-shadow:0 5px 20px rgba(0,0,0,0.5);
+    }
+    #contact input, #contact textarea {
+      padding:12px; border:none; border-radius:6px;
+      font-size:1rem; background:#222; color:#eee;
+    }
+    #contact input:focus, #contact textarea:focus {outline:2px solid #f4c542;}
+    #contact button {
+      padding:14px; border:none; border-radius:6px;
+      background:#f4c542; color:#111; font-weight:bold; font-size:1rem;
+      cursor:pointer; transition:0.3s;
+    }
+    #contact button:hover {background:#fff;}
+
+    .contact-info {
+      text-align:center; margin-top:20px; font-size:1.1rem;
+    }
+    .contact-info p {margin:6px 0;}
+
+    /* ==== Footer ==== */
+    footer {
+      background:#000; color:#aaa;
+      text-align:center; padding:15px 10px;
+      font-size:0.9rem;
+    }
+    footer span {color:#f4c542;}
+
+    /* ==== Responsive ==== */
+    @media(max-width:768px){
+      header {flex-direction:column; align-items:flex-start;}
+      nav ul {flex-direction:column; gap:12px; margin-top:10px;}
+      #home h1 {font-size:2.3rem;}
+      section {padding:100px 15px 50px;}
+    }
+    @media(max-width:480px){
+      #home img {width:120px; height:120px;}
+      #home h1 {font-size:1.8rem;}
+      #home p {font-size:1rem;}
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <header>
+    <h1>Mansoor Bashir</h1>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home">
+    <img src="profile.jpg" alt="Profile Photo"/>
+    <h1>Hello, I'm Mansoor Bashir</h1>
+    <p>Experienced architect specializing in sustainable, functional, and elegant design solutions. I create innovative spaces that balance modern aesthetics with practical usability.</p>
+    <a href="#projects" class="btn">View My Work</a>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <h2>About Me</h2>
+    <p>
+      With 20 years of experience in architecture and design, I have contributed to projects that span luxury residences, commercial complexes, and large-scale urban developments.  
+      My design philosophy combines creativity, sustainability, and attention to detail, ensuring every project reflects both innovation and functionality.  
+      I thrive on transforming ideas into inspiring, livable spaces that meet client goals and enhance community living.
+    </p>
+  </section>
+
+  <!-- Experience Section -->
+  <section id="experience">
+    <h2>Experience</h2>
+    <div class="experience">
+      <div class="exp-card">
+        <h3>Senior Architect</h3>
+        <span>Hayat Communications · Kuwait | 16+ Years</span>
+        <p>
+          Led architectural design and project management for large-scale commercial and residential developments.  
+          Contributed to sustainable, modern, and client-focused projects while ensuring functionality and aesthetic excellence.  
+          Worked closely with multidisciplinary teams, delivering innovative solutions that met both technical and creative goals.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills">
+      <div class="skill">
+        <div class="skill-title">Architectural Design</div>
+        <div class="progress"><div class="progress-bar" data-progress="90%"></div></div>
+      </div>
+      <div class="skill">
+        <div class="skill-title">AutoCAD & Revit</div>
+        <div class="progress"><div class="progress-bar" data-progress="85%"></div></div>
+      </div>
+      <div class="skill">
+        <div class="skill-title">3D Visualization</div>
+        <div class="progress"><div class="progress-bar" data-progress="80%"></div></div>
+      </div>
+      <div class="skill">
+        <div class="skill-title">Interior Design</div>
+        <div class="progress"><div class="progress-bar" data-progress="75%"></div></div>
+      </div>
+      <div class="skill">
+        <div class="skill-title">Project Management</div>
+        <div class="progress"><div class="progress-bar" data-progress="70%"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="projects">
+      <div class="project">
+        <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=1000&q=80" alt="Modern Villa"/>
+        <h3>Modern Villa</h3>
+      </div>
+      <div class="project">
+        <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1000&q=80" alt="Office Complex"/>
+        <h3>Urban Office Complex</h3>
+      </div>
+      <div class="project">
+        <img src="https://images.unsplash.com/photo-1618220252419-b9069c7b0d0d?auto=format&fit=crop&w=1000&q=80" alt="Luxury Apartment"/>
+        <h3>Luxury Apartment</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <form>
+      <input type="text" placeholder="Your Name" required/>
+      <input type="email" placeholder="Your Email" required/>
+      <textarea rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+    <div class="contact-info">
+      <p>📞 <strong>Phone:</strong> 03316784185</p>
+      <p>📧 <strong>Email:</strong> mansoorbashir@gmail.com</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 <span>Mansoor Bashir</span>. All rights reserved.</p>
+  </footer>
+
+  <!-- JS for Skills Animation -->
+  <script>
+    const bars = document.querySelectorAll('.progress-bar');
+    window.addEventListener('scroll', () => {
+      const trigger = window.innerHeight * 0.8;
+      bars.forEach(bar => {
+        const rect = bar.getBoundingClientRect();
+        if(rect.top < trigger){
+          bar.style.width = bar.dataset.progress;
+        }
+      });
+    });
+  </script>
+</body>
+</html>
