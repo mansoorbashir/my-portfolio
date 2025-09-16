@@ -33,6 +33,26 @@
     }
     nav ul li a:hover {color:#f4c542;}
 
+    /* Hamburger */
+    .hamburger {
+      display:none; flex-direction:column; gap:5px;
+      cursor:pointer;
+    }
+    .hamburger span {
+      width:25px; height:3px; background:#f4c542; border-radius:3px;
+      transition:0.3s;
+    }
+
+    /* Mobile Menu */
+    nav.mobile-nav {
+      display:none; position:absolute; top:100%; left:0; width:100%;
+      background:rgba(0,0,0,0.9); flex-direction:column;
+      text-align:center; padding:20px 0;
+    }
+    nav.mobile-nav ul {flex-direction:column; gap:15px;}
+
+    nav.mobile-nav.active {display:flex;}
+
     /* ==== Sections ==== */
     section {min-height:100vh; padding:120px 20px 60px;}
 
@@ -149,10 +169,8 @@
 
     /* ==== Responsive ==== */
     @media(max-width:768px){
-      header {flex-direction:column; align-items:flex-start;}
-      nav ul {flex-direction:column; gap:12px; margin-top:10px;}
-      #home h1 {font-size:2.3rem;}
-      section {padding:100px 15px 50px;}
+      nav.desktop-nav {display:none;}
+      .hamburger {display:flex;}
     }
     @media(max-width:480px){
       #home img {width:120px; height:120px;}
@@ -165,7 +183,20 @@
   <!-- Navbar -->
   <header>
     <h1>Mansoor Bashir</h1>
-    <nav>
+    <nav class="desktop-nav">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+    <nav class="mobile-nav" id="mobileNav">
       <ul>
         <li><a href="#home">Home</a></li>
         <li><a href="#about">About</a></li>
@@ -243,15 +274,15 @@
     <h2>Projects</h2>
     <div class="projects">
       <div class="project">
-        <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=1000&q=80" alt="Modern Villa"/>
+        <img src="project1.jpeg" alt="Modern Villa"/>
         <h3>Modern Villa</h3>
       </div>
       <div class="project">
-        <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1000&q=80" alt="Office Complex"/>
+        <img src="project2.jpeg" alt="Office Complex"/>
         <h3>Urban Office Complex</h3>
       </div>
       <div class="project">
-        <img src="https://images.unsplash.com/photo-1618220252419-b9069c7b0d0d?auto=format&fit=crop&w=1000&q=80" alt="Luxury Apartment"/>
+        <img src="project3.jpeg" alt="Luxury Apartment"/>
         <h3>Luxury Apartment</h3>
       </div>
     </div>
@@ -277,8 +308,9 @@
     <p>© 2025 <span>Mansoor Bashir</span>. All rights reserved.</p>
   </footer>
 
-  <!-- JS for Skills Animation -->
+  <!-- JS for Skills Animation + Mobile Nav -->
   <script>
+    // Progress bars
     const bars = document.querySelectorAll('.progress-bar');
     window.addEventListener('scroll', () => {
       const trigger = window.innerHeight * 0.8;
@@ -287,6 +319,20 @@
         if(rect.top < trigger){
           bar.style.width = bar.dataset.progress;
         }
+      });
+    });
+
+    // Mobile nav toggle
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    hamburger.addEventListener('click', () => {
+      mobileNav.classList.toggle('active');
+    });
+
+    // Close mobile nav when clicking a link
+    document.querySelectorAll('.mobile-nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileNav.classList.remove('active');
       });
     });
   </script>
